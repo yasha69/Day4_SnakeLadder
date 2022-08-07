@@ -1,89 +1,36 @@
-package laddersnake;
+package SnakeAndLadder;
 
-import java.util.Random;
+public class LadderSnake {
+    public static void main(String[] args) {
+        int position=0;
+        int count=0;
+        while(position<=100) {
+            count++;
+            int snake= (int) Math.floor(Math.random() * 10) %3;
+            int check =(int) Math.floor(Math.random() * 10) %7 ;
+            if(snake==1) {
+                position =position + check;
+                if(position>100) {
+                    position = position - check;
 
-class gamePlayer {
-
-    Random rand = new Random();
-
-    int currentPosition = 0;
-
-    final int noPlay = 0, ladder = 1, snake = 2;
-
-    int endGame = 0;
-
-    int attempts = 0;
-
-    public void gameStart(String playerName) {
-
-        while (endGame <= 100) {
-
-            int rollDie = rand.nextInt(6) + 1;
-
-            System.out.println("rollDie is :" + rollDie);
-
-            int gameCheck = rand.nextInt(3);
-
-            System.out.println("game Check is " + gameCheck);
-
-            if (gameCheck == noPlay) {
-
-                currentPosition = currentPosition;
-
-                System.out.println("This is no play.");
-
-                System.out.println(playerName + "'s current position is : " + currentPosition);
-
-                attempts++;
-
-            } else if (gameCheck == ladder) {
-
-                currentPosition = currentPosition + rollDie;
-
-                System.out.println("You got promoted by " + rollDie);
-
-                System.out.println(playerName + "'s current position is : " + currentPosition);
-
-                attempts++;
-
-            } else {
-
-                if (currentPosition < rollDie) {
-
-                    currentPosition = 0;
-
-                    System.out.println("You got snake of " + rollDie + " star again from zero.");
-
-                    System.out.println(playerName + "'s current position is : " + currentPosition);
-
-                } else {
-
-                    currentPosition = currentPosition - rollDie;
-
-                    System.out.println("you got snake of " + rollDie);
-
-                    System.out.println(playerName + "'s current position is : " + currentPosition);
                 }
-
-                attempts++;
+            }
+            else if(snake==2) {
+                position =position - check;
+                if(position<0) {
+                    position=0;
+                }
+            }
+            else {
+                //no play
+                count=count-1;
 
             }
-            endGame = currentPosition;
-        }
+            System.out.println("No of times dice roll is : " + count);
 
-    }
+            System.out.println("current postion  is: " + position);
+        }}
 }
-public class LadderSnake {
 
-    public static void main(String[] args) {
 
-        System.out.println("welcome to snake and ladder games");
-
-        gamePlayer play1 = new laddersnake.gamePlayer();
-
-        play1.gameStart("Player 1");
-
-        System.out.println("Congratulation Player1 completed the game in " + play1.attempts + " attempts.");
-    }
-}
 
